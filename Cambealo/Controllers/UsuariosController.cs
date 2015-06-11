@@ -46,7 +46,7 @@ namespace Cambealo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre,apellidos,correo,contraseña,telefono,edad")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Apellidos,Correo,Contraseña,Telefono,Edad")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Cambealo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,apellidos,correo,contraseña,telefono,edad")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Apellidos,Correo,Contraseña,Telefono,Edad")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {

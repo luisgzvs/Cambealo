@@ -12,22 +12,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.apellidos)
+            @Html.DisplayNameFor(model => model.Apellidos)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.correo)
+            @Html.DisplayNameFor(model => model.Correo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.contraseña)
+            @Html.DisplayNameFor(model => model.Contraseña)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.telefono)
+            @Html.DisplayNameFor(model => model.Telefono)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.edad)
+            @Html.DisplayNameFor(model => model.Edad)
         </th>
         <th></th>
     </tr>
@@ -35,22 +35,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.nombre)
+            @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.apellidos)
+            @Html.DisplayFor(modelItem => item.Apellidos)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.correo)
+            @Html.DisplayFor(modelItem => item.Correo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.contraseña)
+            @Html.DisplayFor(modelItem => item.Contraseña)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.telefono)
+            @Html.DisplayFor(modelItem => item.Telefono)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.edad)
+            @Html.DisplayFor(modelItem => item.Edad)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
