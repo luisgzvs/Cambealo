@@ -120,3 +120,7 @@ C:\Users\Estudiante\Documents\Visual Studio 2012\Projects\Cambealo\Cambealo\bin\
 C:\Users\Estudiante\Documents\Visual Studio 2012\Projects\Cambealo\Cambealo\obj\Debug\Cambealo.csprojResolveAssemblyReference.cache
 C:\Users\Estudiante\Documents\Visual Studio 2012\Projects\Cambealo\Cambealo\obj\Debug\Cambealo.dll
 C:\Users\Estudiante\Documents\Visual Studio 2012\Projects\Cambealo\Cambealo\obj\Debug\Cambealo.pdb
+C:\Users\Brian\Documents\Visual Studio 2013\Projects\Cambealo\Cambealo\obj\Debug\Cambealo.Migrations.Initial.resources
+C:\Users\Brian\Documents\Visual Studio 2013\Projects\Cambealo\Cambealo\obj\Debug\Cambealo.csproj.GenerateResource.Cache
+C:\Users\Brian\Documents\Visual Studio 2013\Projects\Cambealo\Cambealo\obj\Debug\Cambealo.Migrations.Initial1.resources
+C:\Users\Brian\Documents\Visual Studio 2013\Projects\Cambealo\Cambealo\obj\Debug\Cambealo.Migrations.Initial2.resources
