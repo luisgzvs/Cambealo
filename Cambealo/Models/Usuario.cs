@@ -21,9 +21,9 @@ namespace Cambealo.Models
         [System.ComponentModel.DataAnnotations.DataType(DataType.Password)]
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "La contraseña es requerida!")]
         public String Contraseña { set; get; }
+        [System.ComponentModel.DataAnnotations.DataType(DataType.Password)]
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "La confirmacion es requerida!")]
         [System.ComponentModel.DataAnnotations.Compare("Contraseña", ErrorMessage="Las contraseñas no coinciden")]
-        [System.ComponentModel.DataAnnotations.DataType(DataType.Password)]
         public String ConfirmarContraseña { set; get; }
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "El telefono es requerido!")]
         public int Telefono { set; get; }
