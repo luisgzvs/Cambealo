@@ -32,21 +32,24 @@ namespace Cambealo.Controllers
                 TempData["message"] = "Se necesitan más datos";
                 return RedirectToAction("Create");
             }
-                var sql = (from u in db.Usuarios
+            
+            var sql = (from u in db.Usuarios
                           where u.Correo == usuario.Correo
                           select new{
                               id = u.Id,
                               contraseña = u.Contraseña
                           }).ToList();
-                if (sql.Count == 0 || sql[0].contraseña != usuario.Contraseña)
-                {
-                    TempData["message"] = "Usuario o contraseña inválido";
-                    return RedirectToAction("Create");
-                }
 
-            return Redirect("/Usuarios/Details/"+sql[0].id);
+           if (sql.Count == 0 || sql[0].contraseña != usuario.Contraseña)
+           {
+                TempData["message"] = "Usuario o contraseña inválido";
+                return RedirectToAction("Create");
+           }
+
+            TempData["loggedIn"] = true;
+            return Redirect("/Usuarios/Details/" + sql[0].id);
         }
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

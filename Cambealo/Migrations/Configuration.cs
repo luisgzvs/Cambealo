@@ -10,7 +10,6 @@ namespace Cambealo.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "Cambealo.Models.ApplicationDbContext";
         }
 
         protected override void Seed(Cambealo.Models.ApplicationDbContext context)
