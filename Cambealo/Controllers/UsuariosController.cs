@@ -52,10 +52,13 @@ namespace Cambealo.Controllers
             {
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["message"] = "Usuario creado con éxito";
+                TempData["created"] = true;
+                return RedirectToAction("Create");
             }
-
-            return View(usuario);
+            TempData["message"] = "El usuario no pudo se creado";
+            TempData["created"] = false;
+            return RedirectToAction("Create");
         }
 
         // GET: Usuarios/Edit/5

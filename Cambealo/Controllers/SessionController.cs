@@ -14,27 +14,6 @@ namespace Cambealo.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Session
-        public ActionResult Index()
-        {
-            return View(db.Usuarios.ToList());
-        }
-
-        // GET: Session/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(usuario);
-        }
-
         // GET: Session/Create
         public ActionResult Create()
         {
@@ -46,73 +25,26 @@ namespace Cambealo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Apellidos,Correo,Contraseña,Telefono,Edad")] Usuario usuario)
+        public ActionResult Create(Usuario usuario)
         {
-            if (ModelState.IsValid)
+            if (usuario.Correo == null && usuario.Contraseña == null)
             {
-                db.Usuarios.Add(usuario);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["message"] = "Se necesitan más datos";
+                return RedirectToAction("Create");
             }
+                var sql = (from u in db.Usuarios
+                          where u.Correo == usuario.Correo
+                          select new{
+                              id = u.Id,
+                              contraseña = u.Contraseña
+                          }).ToList();
+                if (sql.Count == 0 || sql[0].contraseña != usuario.Contraseña)
+                {
+                    TempData["message"] = "Usuario o contraseña inválido";
+                    return RedirectToAction("Create");
+                }
 
-            return View(usuario);
-        }
-
-        // GET: Session/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(usuario);
-        }
-
-        // POST: Session/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Apellidos,Correo,Contraseña,Telefono,Edad")] Usuario usuario)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(usuario).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(usuario);
-        }
-
-        // GET: Session/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(usuario);
-        }
-
-        // POST: Session/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Usuario usuario = db.Usuarios.Find(id);
-            db.Usuarios.Remove(usuario);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("/Usuarios/Details/"+sql[0].id);
         }
 
         protected override void Dispose(bool disposing)
