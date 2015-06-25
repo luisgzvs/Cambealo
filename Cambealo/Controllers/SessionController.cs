@@ -45,9 +45,13 @@ namespace Cambealo.Controllers
                 TempData["message"] = "Usuario o contraseña inválido";
                 return RedirectToAction("Create");
            }
-
-            TempData["loggedIn"] = true;
+           Session["isLoggedIn"] = sql[0].id;
             return Redirect("/Usuarios/Details/" + sql[0].id);
+        }
+
+        public ActionResult Delete()
+        {
+            return Redirect("/");
         }
         
         protected override void Dispose(bool disposing)
