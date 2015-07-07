@@ -11,19 +11,16 @@
     <hr />
     <dl class="dl-horizontal">
         <dd>
-            @Html.ActionLink("Ver transacciones de entrada!", "/Productos/Create/")        
+            @Html.ActionLink("Ver transacciones de entrada!", "/Productos/")        
         </dd>
 
         <dd>
-            @Html.ActionLink("Ver transacciones de Salida!", "/Productos/Create/")
+            @Html.ActionLink("Ver transacciones de Salida!", "/Productos/")
         </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Agregar un Nuevo producto!", "Productos/Index/")
-</p>
+        <dd>
+            @Html.ActionLink("Ofrecer un producto para intercambiarlo!", "/Productos/")
+        </dd>
 
-<p> 
-    @Html.ActionLink("Ofrecer un producto para intercambiarlo!", "Productos/Index/")
-</p>
+</dl>
+</div>
