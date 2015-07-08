@@ -2,7 +2,18 @@
 
 @{
     ViewBag.Title = "Create";
+    ViewBag.message = TempData["message"];
+    ViewBag.created = TempData["created"];
+    if (ViewBag.created == true)
+    {
+        ViewBag.color = "green";
+    }
+    else
+    {
+        ViewBag.color = "red";
+    }
 }
+
 
 <h2>Create</h2>
 
@@ -13,6 +24,7 @@
     
     <div class="form-horizontal">
         <h4>Producto</h4>
+        <h4 style="color: @ViewBag.color;">@ViewBag.message</h4>
         <hr />
         @Html.ValidationSummary(true)
 
