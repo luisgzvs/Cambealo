@@ -2,27 +2,31 @@
 @model Cambealo.Models.Usuario
 
 @{
-    ViewBag.loggedIn = TempData["loggedIn"];
+    ViewData["usuario"] = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
+    var usuario = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
 }
 
-@if (ViewBag.loggedIn == true)
+@if (usuario != null)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    var nombreCompleto = usuario["nombre"] + " " + usuario["apellidos"];
+    using (Html.BeginForm("Salir", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hola " + Model.Correo + "!","Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink(nombreCompleto, usuario["nombre"]+usuario["apellidos"], "usuario", routeValues: null, htmlAttributes: new { id = "usuarioLink" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()" >Log off</a></li>
+        <li>
+            @Html.ActionLink("Salir", "", "salir", routeValues: null, htmlAttributes: new { id = "salirLink" })
+        </li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registrar", "Create", "Usuarios", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log In", "Create", "Session", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Registrar","", "registrar", routeValues: null, htmlAttributes: new { id = "registrarLink" })</li>
+        <li>@Html.ActionLink("Ingresar", "","ingresar", routeValues: null, htmlAttributes: new { id = "ingresarLink" })</li>
     </ul>
 }

@@ -20,10 +20,10 @@ namespace Cambealo.Controllers
             return View(db.Usuarios.ToList());
         }
 
-        // GET: Usuarios/Details/5
-        public ActionResult Details(int? id)
+        // GET: Usuarios/Show/5
+        public ActionResult Show()
         {
-            if (id == null)
+            /*if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -32,7 +32,8 @@ namespace Cambealo.Controllers
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(usuario);*/
+            return View("Show");
         }
 
         // GET: Usuarios/Create

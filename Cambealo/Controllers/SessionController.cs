@@ -37,6 +37,8 @@ namespace Cambealo.Controllers
                           where u.Correo == usuario.Correo
                           select new{
                               id = u.Id,
+                              nombre = u.Nombre,
+                              apellidos = u.Apellidos,
                               contraseña = u.Contraseña
                           }).ToList();
 
@@ -45,12 +47,17 @@ namespace Cambealo.Controllers
                 TempData["message"] = "Usuario o contraseña inválido";
                 return RedirectToAction("Create");
            }
-           Session["isLoggedIn"] = sql[0].id;
-            return Redirect("/Usuarios/Details/" + sql[0].id);
+           Dictionary<string, string> usuarioActual = new Dictionary<string, string>();
+           usuarioActual["id"]= sql[0].id.ToString();
+           usuarioActual["nombre"] = sql[0].nombre;
+           usuarioActual["apellidos"] = sql[0].apellidos;
+           System.Web.HttpContext.Current.Session["usuarioActual"] = usuarioActual;
+            return Redirect("/usuario/" + usuarioActual["nombre"]+usuarioActual["apellidos"]);
         }
 
         public ActionResult Delete()
         {
+            Session.Remove("usuarioActual");
             return Redirect("/");
         }
         
