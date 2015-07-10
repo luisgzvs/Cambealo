@@ -2,7 +2,6 @@
 @model Cambealo.Models.Usuario
 
 @{
-    ViewData["usuario"] = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
     var usuario = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
 }
 
