@@ -11,7 +11,8 @@ namespace Cambealo.Models
         public String Nombre { get; set; }
         public String Descripcion { get; set; }
         public String Foto { get; set; }
-        public enum Estado {inactivo, activo, en_transaccion, cambiado};
+        public String Estado { get; set; }
         public String Fecha { get; set; }
+        public int IdUsuario { get; set; }
     }
 }

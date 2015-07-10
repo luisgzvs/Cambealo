@@ -119,11 +119,6 @@ namespace Cambealo.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Productos()
-        {
-            return Redirect("/Productos/Create/");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

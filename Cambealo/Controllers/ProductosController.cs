@@ -50,18 +50,15 @@ namespace Cambealo.Controllers
         {
             if (ModelState.IsValid)
             {
+                var usuario = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
+                producto.IdUsuario = Convert.ToInt32(usuario["id"]);
+                producto.Fecha = DateTime.Today.ToString();
+                producto.Estado = "activo";
                 db.Productoes.Add(producto);
                 db.SaveChanges();
                 TempData["message"] = "Producto creado con éxito";
                 TempData["created"] = true;
                 return RedirectToAction("Create");
-                Transaccion t = new Transaccion();
-                t.Ofrecido = producto.Nombre;
-                t.Fecha = DateTime.Today.ToString();
-                t.Estado = "Pendiente";
-                t.IdUsuario = producto.Id;
-                db.Transaccions.Add(t);
-                
             }
                TempData["message"] = "El producto no pudo ser creado";
                TempData["created"] = false;

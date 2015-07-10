@@ -19,7 +19,11 @@
         </dd>
 
         <dd>
-            @Html.ActionLink("Ofrecer un producto para intercambiarlo!", "/Productos/")
+            @Html.ActionLink("Crear un producto para intercambiarlo!", "create", "producto", routeValues: null, htmlAttributes: new { id = "productoCrear" })
+        </dd>
+
+        <dd>
+            @Html.ActionLink("Ver mi lista de productos!", "", "productos", routeValues: null, htmlAttributes: new { id = "index" })
         </dd>
 
 </dl>
