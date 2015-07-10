@@ -52,12 +52,24 @@ namespace Cambealo.Controllers
             {
                 db.Productoes.Add(producto);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["message"] = "Producto creado con éxito";
+                TempData["created"] = true;
+                return RedirectToAction("Create");
+                Transaccion t = new Transaccion();
+                t.Ofrecido = producto.Nombre;
+                t.Fecha = DateTime.Today.ToString();
+                t.Estado = "Pendiente";
+                t.IdUsuario = producto.Id;
+                db.Transaccions.Add(t);
+                
             }
-
-            return View(producto);
+               TempData["message"] = "El producto no pudo ser creado";
+               TempData["created"] = false;
+               return RedirectToAction("Create");
+                
         }
 
+            
         // GET: /Productos/Edit/5
         public ActionResult Edit(int? id)
         {

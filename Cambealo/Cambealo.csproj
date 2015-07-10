@@ -167,6 +167,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="Controllers\TransaccionsController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,6 +189,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\Transaccion.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -263,6 +265,11 @@
     <Content Include="Views\Session\Details.cshtml" />
     <Content Include="Views\Session\Edit.cshtml" />
     <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Transaccions\Create.cshtml" />
+    <Content Include="Views\Transaccions\Delete.cshtml" />
+    <Content Include="Views\Transaccions\Details.cshtml" />
+    <Content Include="Views\Transaccions\Edit.cshtml" />
+    <Content Include="Views\Transaccions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

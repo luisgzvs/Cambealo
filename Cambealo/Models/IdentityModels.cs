@@ -33,5 +33,7 @@ namespace Cambealo.Models
         public System.Data.Entity.DbSet<Cambealo.Models.Usuario> Usuarios { get; set; }
 
         public System.Data.Entity.DbSet<Cambealo.Models.Producto> Productoes { get; set; }
+
+        public System.Data.Entity.DbSet<Cambealo.Models.Transaccion> Transaccions { get; set; }
     }
 }
