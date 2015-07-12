@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    var productos = ViewBag.productos;
 }
 
 <div class="jumbotron">
@@ -7,13 +7,13 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-
-    </div>
-    <div class="col-md-4">
-
-    </div>
-    <div class="col-md-4">
-
-    </div>
+    @{foreach (var p in productos)
+    {
+        <div>
+            <ul>
+                <li>@p</li>
+            </ul>
+        </div>
+    }
+    }
 </div>

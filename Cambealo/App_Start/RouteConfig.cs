@@ -14,6 +14,12 @@ namespace Cambealo
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "ProductoEdit",
+                url: "producto/editar/{id}",
+                defaults: new { controller = "Productos", action = "Edit" }
+            );
+
+            routes.MapRoute(
                 name: "Productos",
                 url: "productos",
                 defaults: new { controller = "Productos", action = "Index" }
