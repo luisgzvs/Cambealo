@@ -10,8 +10,15 @@
     @{foreach (var p in productos)
     {
         <div>
+            @{
+            byte[] image = p.foto;
+            string imageBase64 = Convert.ToBase64String(image);
+            string imageSrc = string.Format("data:image/jpeg;base64,{0}", imageBase64);
+            <img src="@imageSrc" width="100" height="100" />
+            }
+            <img src="data:image/jpg;base64,0xFFD8FFE000104A46494600010101004800480000FFDB0043000B08080809080C09090C110B0A0B11140F0C0C0F1417121212" alt="" />
             <ul>
-                <li>@p</li>
+                <li></li>
             </ul>
         </div>
     }

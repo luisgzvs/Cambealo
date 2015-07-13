@@ -10,7 +10,7 @@ namespace Cambealo.Models
         public int Id { get; set; }
         public String Nombre { get; set; }
         public String Descripcion { get; set; }
-        public String Foto { get; set; }
+        public byte[] Foto { get; set; }
         public String Estado { get; set; }
         public String Fecha { get; set; }
         public int IdUsuario { get; set; }

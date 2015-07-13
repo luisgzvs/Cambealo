@@ -1,30 +1,35 @@
 ﻿@model Cambealo.Models.Usuario
 
 @{
-    ViewBag.Title = "Details";
+    var usuario = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
 }
 
-<h2>Bienvenido</h2>
+@if (usuario != null)
+{
+    var nombreCompleto = usuario["nombre"] + usuario["apellidos"];
+    <h2>Bienvenido</h2>
 
-<div>
-    <h4>Usuario</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dd>
-            @Html.ActionLink("Ver transacciones de entrada!", "/Productos/")        
-        </dd>
+    <div>
+        <h4>Usuario</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dd>
+                @Html.ActionLink("Ver transacciones de entrada!", "")
+            </dd>
 
-        <dd>
-            @Html.ActionLink("Ver transacciones de Salida!", "/Productos/")
-        </dd>
+            <dd>
+                @Html.ActionLink("Ver transacciones de Salida!", "")
+            </dd>
 
-        <dd>
-            @Html.ActionLink("Crear un producto para intercambiarlo!", "create", "producto", routeValues: null, htmlAttributes: new { id = "productoCrear" })
-        </dd>
+            <dd>
+                @Html.ActionLink("Crear un producto para intercambiarlo!", "crear", "usuario/"+nombreCompleto+"/productos", routeValues: null, htmlAttributes: new { id = "productoCrear" })
+            </dd>
 
-        <dd>
-            @Html.ActionLink("Ver mi lista de productos!", "", "productos", routeValues: null, htmlAttributes: new { id = "index" })
-        </dd>
+            <dd>
+                @Html.ActionLink("Ver mi lista de productos!", "productos", "usuario/" + nombreCompleto, routeValues: null, htmlAttributes: new { id = "index" })
+            </dd>
 
-</dl>
-</div>
+        </dl>
+    </div>
+}
+

@@ -16,8 +16,9 @@ namespace Cambealo.Controllers
             var usuario = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
             if (usuario != null)
             {
-                var sql = (from p in db.Productoes
-                           where p.IdUsuario != Convert.ToInt32(usuario["id"])
+                var usuarioId = Convert.ToInt32(usuario["id"]);
+                var sql = (from p in db.Productos
+                           where p.IdUsuario != usuarioId
                            select new
                            {
                                id = p.Id,
@@ -31,15 +32,15 @@ namespace Cambealo.Controllers
             }
             else
             {
-                var sql = (from p in db.Productoes
-                           select new
+                var sql = (from p in db.Productos
+                           select new 
                            {
-                               id = p.Id,
-                               nombre = p.Nombre,
-                               descripcion = p.Descripcion,
-                               foto = p.Foto,
-                               estado = p.Estado,
-                               idUsuario = p.IdUsuario
+                               Id = p.Id,
+                               Nombre = p.Nombre,
+                               Descripcion = p.Descripcion,
+                               Foto = p.Foto,
+                               Estado = p.Estado,
+                               IdUsuario = p.IdUsuario
                            }).ToList();
                 ViewBag.productos = sql;
             }

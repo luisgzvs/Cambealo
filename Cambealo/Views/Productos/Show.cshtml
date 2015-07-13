@@ -1,0 +1,58 @@
+﻿@model Cambealo.Models.Producto
+
+@{
+    var usuario = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
+}
+
+@if (usuario != null)
+{
+    var nombreCompleto = usuario["nombre"] + usuario["apellidos"];
+    <h2>Producto</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Foto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Foto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Fecha)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(model => model.Estado)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "editar/" + Model.Id, "usuario/" + nombreCompleto + "/productos", routeValues: null, htmlAttributes: new { id = "registrarLink" }) |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+
+}
