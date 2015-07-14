@@ -39,7 +39,11 @@ namespace Cambealo.Controllers
                               id = u.Id,
                               nombre = u.Nombre,
                               apellidos = u.Apellidos,
-                              contraseña = u.Contraseña
+                              correo = u.Correo,
+                              contraseña = u.Contraseña,
+                              telefono = u.Telefono,
+                              edad = u.Edad,
+                              confimar = u.ConfirmarContraseña
                           }).ToList();
 
            if (sql.Count == 0 || sql[0].contraseña != usuario.Contraseña)

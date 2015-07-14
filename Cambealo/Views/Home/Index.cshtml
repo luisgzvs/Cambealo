@@ -6,21 +6,23 @@
     <h1>Bienvenido a Cambealo</h1>
 </div>
 
-<div class="row">
-    @{foreach (var p in productos)
-    {
-        <div>
-            @{
-            byte[] image = p.foto;
-            string imageBase64 = Convert.ToBase64String(image);
-            string imageSrc = string.Format("data:image/jpeg;base64,{0}", imageBase64);
-            <img src="@imageSrc" width="100" height="100" />
-            }
-            <img src="data:image/jpg;base64,0xFFD8FFE000104A46494600010101004800480000FFDB0043000B08080809080C09090C110B0A0B11140F0C0C0F1417121212" alt="" />
-            <ul>
-                <li></li>
-            </ul>
-        </div>
-    }
-    }
-</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+
+    $(function () {
+        $('#click').click(function (e) {
+
+            var name = $("#search").val();
+            var url = '@Url.Action("Search", "Productos")' + '/' + name;
+            window.location.href = url;
+
+        });
+    });
+
+</script>
+
+<input type="text" name="searchText" id="search" />
+<input type="button" value="Buscar Producto" id="click" />
+
+

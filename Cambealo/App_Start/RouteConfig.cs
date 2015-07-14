@@ -13,6 +13,8 @@ namespace Cambealo
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+           
+
             routes.MapRoute(
                 name: "ProductoMostrar",
                 url: "usuario/{nombre}/productos/{id}",
@@ -33,7 +35,7 @@ namespace Cambealo
 
             routes.MapRoute(
                 name: "ProductoCrear",
-                url: "usuario/{nombre}/productos/crear",
+                url: "productos/crear",
                 defaults: new { controller = "Productos", action = "Create" }
             );
 
@@ -66,6 +68,12 @@ namespace Cambealo
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+           routes.MapRoute(
+            name: "searchaction",
+            url: "Productos/Search/{searchTerm}",
+           defaults: new { controller = "Productos", action = "Search" }
+           );
         }
         protected void Application_Start()
         {

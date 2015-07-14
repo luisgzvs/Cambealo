@@ -19,18 +19,8 @@ namespace Cambealo.Controllers
         {
             var usuario = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
             var usuarioId = Convert.ToInt32(usuario["id"]);
-            var sql = (from p in db.Productos
-                       where p.IdUsuario == usuarioId
-                       select new
-                       {
-                           id = p.Id,
-                           nombre = p.Nombre,
-                           descripcion = p.Descripcion,
-                           foto = (byte[])p.Foto,
-                           fecha = p.Fecha,
-                           estado = p.Estado
-                       }).ToList();
-            return View(sql);
+            var miProducto = db.Productoes.Where(p => p.IdUsuario == usuarioId);
+            return View(miProducto.ToList());
         }
 
         // GET: /Productos/Details/5
@@ -40,7 +30,7 @@ namespace Cambealo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
+            Producto producto = db.Productoes.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -69,7 +59,7 @@ namespace Cambealo.Controllers
                 producto.IdUsuario = Convert.ToInt32(usuario["id"]);
                 producto.Fecha = DateTime.Today.ToString();
                 producto.Estado = "activo";
-                db.Productos.Add(producto);
+                db.Productoes.Add(producto);
                 db.SaveChanges();
                 TempData["message"] = "Producto creado con éxito";
                 TempData["created"] = true;
@@ -89,7 +79,7 @@ namespace Cambealo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
+            Producto producto = db.Productoes.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -120,7 +110,7 @@ namespace Cambealo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
+            Producto producto = db.Productoes.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -133,10 +123,16 @@ namespace Cambealo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Producto producto = db.Productos.Find(id);
-            db.Productos.Remove(producto);
+            Producto producto = db.Productoes.Find(id);
+            db.Productoes.Remove(producto);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Search(string searchTerm = "")
+        {
+            return View("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -13,38 +13,7 @@ namespace Cambealo.Controllers
 
         public ActionResult Index()
         {
-            var usuario = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
-            if (usuario != null)
-            {
-                var usuarioId = Convert.ToInt32(usuario["id"]);
-                var sql = (from p in db.Productos
-                           where p.IdUsuario != usuarioId
-                           select new
-                           {
-                               id = p.Id,
-                               nombre = p.Nombre,
-                               descripcion = p.Descripcion,
-                               foto = p.Foto,
-                               estado = p.Estado,
-                               idUsuario = p.IdUsuario
-                           }).ToList();
-                ViewBag.productos = sql;
-            }
-            else
-            {
-                var sql = (from p in db.Productos
-                           select new 
-                           {
-                               Id = p.Id,
-                               Nombre = p.Nombre,
-                               Descripcion = p.Descripcion,
-                               Foto = p.Foto,
-                               Estado = p.Estado,
-                               IdUsuario = p.IdUsuario
-                           }).ToList();
-                ViewBag.productos = sql;
-            }
-            return View();
+          return View();
         }
 
         public ActionResult About()
@@ -60,5 +29,7 @@ namespace Cambealo.Controllers
 
             return View();
         }
+
+
     }
 }
