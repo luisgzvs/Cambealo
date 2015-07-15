@@ -92,11 +92,13 @@ namespace Cambealo.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Nombre,Descripcion,Foto,Fecha")] Producto producto)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Descripcion,Foto,Fecha")] Producto producto, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && upload != null && upload.ContentLength > 0)
             {
                 db.Entry(producto).State = EntityState.Modified;
+                producto.Foto = new byte[upload.ContentLength];
+                upload.InputStream.Read(producto.Foto, 0, upload.ContentLength);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -13,7 +13,15 @@ namespace Cambealo.Controllers
 
         public ActionResult Index()
         {
-          return View();
+            var usuario = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
+            if (usuario != null)
+            {
+                var usuarioId = Convert.ToInt32(usuario["id"]);
+                var productos = db.Productoes.Where(p => p.IdUsuario != usuarioId);
+                return View(productos.ToList());
+            } else {
+                return View(db.Productoes.ToList());
+            }
         }
 
         public ActionResult About()

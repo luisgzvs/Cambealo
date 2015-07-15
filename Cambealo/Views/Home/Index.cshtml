@@ -1,5 +1,6 @@
-﻿@{
-    var productos = ViewBag.productos;
+﻿@model IEnumerable<Cambealo.Models.Producto>
+@{
+    var usuario = System.Web.HttpContext.Current.Session["usuarioActual"] as Dictionary<string, string>;
 }
 
 <div class="jumbotron">
@@ -22,7 +23,75 @@
 
 </script>
 
-<input type="text" name="searchText" id="search" />
-<input type="button" value="Buscar Producto" id="click" />
 
+<div class="input-group">
+    <div class="input-group-btn">
+        <input type="text" class="form-control" name="searchText" id="search" />
+        <input type="button" class="btn btn-primary" value="Buscar Producto" id="click" />
+    </div>
+</div>
+<br />
 
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        @{
+            var cont = 0;
+        }
+        @foreach (var item in Model)
+        {
+            if (cont == 0)
+	        {
+                <li data-target="#myCarousel" data-slide-to="@cont" class="active"></li>
+                cont++;
+            }
+            else
+            {
+                <li data-target="#myCarousel" data-slide-to="@cont"></li>
+                cont++;
+            }
+        }
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        @{
+            cont = 0;
+        }
+        @foreach (var item in Model)
+        {
+            if (cont == 0)
+            {
+                <div class="item active">
+                    @{
+                    string imageBase64 = Convert.ToBase64String(item.Foto);
+                    string imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                    <a href=""><img src="@imageSrc" width="235" height="100" /></a>
+                    }
+                </div>
+                cont++;
+            }
+            else
+            {
+                <div class="item">
+                    @{
+                    string imageBase64 = Convert.ToBase64String(item.Foto);
+                    string imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                    <a href=""><img src="@imageSrc" width="235" height="100" /></a>
+                    }
+                </div>
+                cont++;
+            }
+        }
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
